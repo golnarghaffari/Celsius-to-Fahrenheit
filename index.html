@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvert temp °C to °F</title>
+    <link rel="icon" href="img/thermometer.png" type="image/png">
+    <link href="style/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <label for="converter">Converter <span class="C">°C</span> to <span class="F">°F</span></label>
+    </header>
+
+    <div>
+        <input type="text" id="converter" placeholder="°C">
+    </div>
+
+    <p class="result"></p>
+
+    <div id="buttons">
+        <button class="convertButton">Convert</button>
+        <button class="resetButton">Reset</button>
+        <button class="changeButton">Change</button>
+    </div>
+    <script>
+        const converter = document.getElementById('converter');
+        const result = document.querySelector('.result');
+        const convertButton = document.querySelector('.convertButton');
+        const resetButton = document.querySelector('.resetButton');
+        const changeButton = document.querySelector('.changeButton');
+        const C = document.querySelector('.C');
+        const F = document.querySelector('.F');
+
+        function convert() {
+            if (converter.value=='') {
+                result.innerHTML='insert correct value'
+                result.style.color='red'
+            }else{
+                if (C.innerHTML == '°C') {
+                let _result = (converter.value * 1.8) + 32;
+                result.innerHTML =converter.value +'°C equal  ' + _result + '°F';
+                result.style.color='rgb(224, 224, 15)'
+
+            } else {
+                let _result = (converter.value - 32) / 1.8;
+                result.innerHTML =converter.value +'°F equal  ' + _result + '°C';
+                result.style.color= 'rgb(224, 224, 15)'
+            }
+            }
+        }
+        function reset() {
+            result.innerHTML = '';
+            converter.value = '';
+        }
+        function changeUnit() {
+            if (C.innerHTML == '°C') {
+                C.innerHTML = '°F'
+                F.innerHTML = '°C'
+                converter.setAttribute('placeholder', '°F')
+                document.title='Canvert temp °C to °F'
+            } else {
+                C.innerHTML = '°C'
+                F.innerHTML = '°F'
+                converter.setAttribute('placeholder', '°C')
+                document.title='Canvert temp °F to °C'
+
+            }
+
+        }
+        convertButton.addEventListener('click', convert);
+        resetButton.addEventListener('click', reset);
+        changeButton.addEventListener('click', changeUnit);
+
+    </script>
+</body>
+
+</html>
